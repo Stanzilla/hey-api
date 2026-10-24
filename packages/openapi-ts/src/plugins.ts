@@ -23,6 +23,7 @@ export const tanstackSolidQuery = pluginHelper('@tanstack/solid-query');
 export const tanstackSvelteQuery = pluginHelper('@tanstack/svelte-query');
 export const tanstackVueQuery = pluginHelper('@tanstack/vue-query');
 export const arktype = pluginHelper('arktype');
+export const effect = pluginHelper('effect');
 export const fastify = pluginHelper('fastify');
 export const msw = pluginHelper('msw');
 export const nestjs = pluginHelper('nestjs');

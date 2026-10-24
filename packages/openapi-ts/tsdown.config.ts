@@ -14,7 +14,9 @@ export default defineConfig({
     neverBundle: [
       '@angular/common/http',
       '@angular/core',
+      '@effect/openapi-generator',
       'axios',
+      'effect',
       'ky',
       'nuxt/app',
       'ofetch',

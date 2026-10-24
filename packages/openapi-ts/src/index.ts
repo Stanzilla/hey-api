@@ -19,6 +19,7 @@ declare module '@hey-api/codegen-core' {
     artifact?:
       | 'angular'
       | 'arktype'
+      | 'effect'
       | 'fastify'
       | 'json-schema'
       | 'msw'
@@ -74,6 +75,7 @@ declare module '@hey-api/shared' {
     '@tanstack/svelte-query': Plugins.TanStackSvelteQuery.Types['Types'];
     '@tanstack/vue-query': Plugins.TanStackVueQuery.Types['Types'];
     arktype: Plugins.Arktype.Types['Types'];
+    effect: Plugins.Effect.Types['Types'];
     fastify: Plugins.Fastify.Types['Types'];
     msw: Plugins.Msw.Types['Types'];
     nestjs: Plugins.NestJs.Types['Types'];
@@ -135,6 +137,7 @@ import type { TanStackSolidQueryPlugin } from './plugins/@tanstack/solid-query';
 import type { TanStackSvelteQueryPlugin } from './plugins/@tanstack/svelte-query';
 import type { TanStackVueQueryPlugin } from './plugins/@tanstack/vue-query';
 import type { ArktypePlugin } from './plugins/arktype';
+import type { EffectPlugin } from './plugins/effect';
 import type { FastifyPlugin } from './plugins/fastify';
 import type { MswPlugin } from './plugins/msw';
 import type { NestJsPlugin } from './plugins/nestjs';
@@ -206,6 +209,10 @@ export namespace Plugins {
 
   export namespace Arktype {
     export type Types = ArktypePlugin;
+  }
+
+  export namespace Effect {
+    export type Types = EffectPlugin;
   }
 
   export namespace FakerJsFaker {

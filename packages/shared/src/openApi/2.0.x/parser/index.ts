@@ -111,11 +111,13 @@ export function parseV2_0_X(context: Context<OpenAPIV2.Document>): void {
     };
 
     if (finalPathItem.delete) {
+      // copy, so body parameters are not written back to the input spec
+      const operation = { ...finalPathItem.delete };
       const parameters = mergeParametersObjects({
         source: parametersArrayToObject({
           context,
-          operation: finalPathItem.delete,
-          parameters: finalPathItem.delete.parameters,
+          operation,
+          parameters: operation.parameters,
         }),
         target: operationArgs.operation.parameters,
       });
@@ -124,18 +126,20 @@ export function parseV2_0_X(context: Context<OpenAPIV2.Document>): void {
         method: 'delete',
         operation: {
           ...operationArgs.operation,
-          ...finalPathItem.delete,
+          ...operation,
           parameters,
         },
       });
     }
 
     if (finalPathItem.get) {
+      // copy, so body parameters are not written back to the input spec
+      const operation = { ...finalPathItem.get };
       const parameters = mergeParametersObjects({
         source: parametersArrayToObject({
           context,
-          operation: finalPathItem.get,
-          parameters: finalPathItem.get.parameters,
+          operation,
+          parameters: operation.parameters,
         }),
         target: operationArgs.operation.parameters,
       });
@@ -144,18 +148,20 @@ export function parseV2_0_X(context: Context<OpenAPIV2.Document>): void {
         method: 'get',
         operation: {
           ...operationArgs.operation,
-          ...finalPathItem.get,
+          ...operation,
           parameters,
         },
       });
     }
 
     if (finalPathItem.head) {
+      // copy, so body parameters are not written back to the input spec
+      const operation = { ...finalPathItem.head };
       const parameters = mergeParametersObjects({
         source: parametersArrayToObject({
           context,
-          operation: finalPathItem.head,
-          parameters: finalPathItem.head.parameters,
+          operation,
+          parameters: operation.parameters,
         }),
         target: operationArgs.operation.parameters,
       });
@@ -164,18 +170,20 @@ export function parseV2_0_X(context: Context<OpenAPIV2.Document>): void {
         method: 'head',
         operation: {
           ...operationArgs.operation,
-          ...finalPathItem.head,
+          ...operation,
           parameters,
         },
       });
     }
 
     if (finalPathItem.options) {
+      // copy, so body parameters are not written back to the input spec
+      const operation = { ...finalPathItem.options };
       const parameters = mergeParametersObjects({
         source: parametersArrayToObject({
           context,
-          operation: finalPathItem.options,
-          parameters: finalPathItem.options.parameters,
+          operation,
+          parameters: operation.parameters,
         }),
         target: operationArgs.operation.parameters,
       });
@@ -184,18 +192,20 @@ export function parseV2_0_X(context: Context<OpenAPIV2.Document>): void {
         method: 'options',
         operation: {
           ...operationArgs.operation,
-          ...finalPathItem.options,
+          ...operation,
           parameters,
         },
       });
     }
 
     if (finalPathItem.patch) {
+      // copy, so body parameters are not written back to the input spec
+      const operation = { ...finalPathItem.patch };
       const parameters = mergeParametersObjects({
         source: parametersArrayToObject({
           context,
-          operation: finalPathItem.patch,
-          parameters: finalPathItem.patch.parameters,
+          operation,
+          parameters: operation.parameters,
         }),
         target: operationArgs.operation.parameters,
       });
@@ -204,18 +214,20 @@ export function parseV2_0_X(context: Context<OpenAPIV2.Document>): void {
         method: 'patch',
         operation: {
           ...operationArgs.operation,
-          ...finalPathItem.patch,
+          ...operation,
           parameters,
         },
       });
     }
 
     if (finalPathItem.post) {
+      // copy, so body parameters are not written back to the input spec
+      const operation = { ...finalPathItem.post };
       const parameters = mergeParametersObjects({
         source: parametersArrayToObject({
           context,
-          operation: finalPathItem.post,
-          parameters: finalPathItem.post.parameters,
+          operation,
+          parameters: operation.parameters,
         }),
         target: operationArgs.operation.parameters,
       });
@@ -224,18 +236,20 @@ export function parseV2_0_X(context: Context<OpenAPIV2.Document>): void {
         method: 'post',
         operation: {
           ...operationArgs.operation,
-          ...finalPathItem.post,
+          ...operation,
           parameters,
         },
       });
     }
 
     if (finalPathItem.put) {
+      // copy, so body parameters are not written back to the input spec
+      const operation = { ...finalPathItem.put };
       const parameters = mergeParametersObjects({
         source: parametersArrayToObject({
           context,
-          operation: finalPathItem.put,
-          parameters: finalPathItem.put.parameters,
+          operation,
+          parameters: operation.parameters,
         }),
         target: operationArgs.operation.parameters,
       });
@@ -244,7 +258,7 @@ export function parseV2_0_X(context: Context<OpenAPIV2.Document>): void {
         method: 'put',
         operation: {
           ...operationArgs.operation,
-          ...finalPathItem.put,
+          ...operation,
           parameters,
         },
       });
