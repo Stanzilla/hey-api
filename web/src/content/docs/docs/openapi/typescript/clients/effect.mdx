@@ -1,6 +1,6 @@
 ---
 title: Effect client
-description: Effect client for Hey API. Compatible with all our features.
+description: Generate Effect Schema types, HttpClient clients, and HttpApi definitions from OpenAPI with the Effect plugin for openapi-ts.
 sidebar:
   label: Effect
 ---
@@ -9,8 +9,107 @@ import FeatureStatus from '@/components/FeatureStatus.astro';
 
 # Effect
 
-<FeatureStatus issueNumber={2082} status="planned" />
+<FeatureStatus issueNumber={2082} status="beta" />
 
 ### About
 
 [Effect](https://effect.website/) is a powerful TypeScript library designed to help developers easily create complex, synchronous, and asynchronous programs.
+
+The Effect plugin runs the official [`@effect/openapi-generator`](https://github.com/Effect-TS/effect/tree/main/packages/tools/openapi-generator) inside Hey API. The generated code is the same as the output of the `openapigen` CLI, and you get Hey API features such as remote inputs, `parser.patch`, watch mode, output formatting, and linting.
+
+## Features
+
+- Effect v4 support
+- same output as `@effect/openapi-generator`
+- Effect `Schema` types and `HttpClient` clients
+- `HttpApi` definitions
+- seamless integration with `@hey-api/openapi-ts` ecosystem
+
+## Installation
+
+Install `effect` and `@effect/openapi-generator`. The plugin uses your installed version of the generator.
+
+```sh
+npm install effect @effect/openapi-generator
+```
+
+In your [configuration](/docs/openapi/typescript/get-started), add `effect` to your plugins and you'll be ready to generate Effect artifacts. 🎉
+
+```js {5} title="openapi-ts.config.ts"
+export default {
+  input: 'hey-api/backend', // sign up at app.heyapi.dev
+  output: 'src/client',
+  plugins: ['effect'],
+};
+```
+
+The plugin writes all generated code to `effect.gen.ts`.
+
+## Usage
+
+```ts
+import { Effect } from 'effect';
+import { FetchHttpClient, HttpClient, HttpClientRequest } from 'effect/http';
+
+import { make } from './client/effect.gen';
+
+const program = Effect.gen(function* () {
+  const client = make(yield* HttpClient.HttpClient, {
+    transformClient: (client) =>
+      Effect.succeed(
+        client.pipe(
+          HttpClient.mapRequest(HttpClientRequest.prependUrl('https://api.example.com')),
+        ),
+      ),
+  });
+  return yield* client.listPets({ params: { limit: 10 } });
+});
+
+program.pipe(Effect.provide(FetchHttpClient.layer), Effect.runPromise);
+```
+
+## Format
+
+Use the `format` option to select the output. The values are the same as the `--format` flag of the `openapigen` CLI.
+
+| Value                    | Output                                                 |
+| ------------------------ | ------------------------------------------------------ |
+| `httpclient`             | Effect `Schema` types and an `HttpClient` client       |
+| `httpclient-type-only`   | TypeScript types and an `HttpClient` client            |
+| `httpapi`                | Effect `Schema` types and an `HttpApi` definition      |
+
+```js {6} title="openapi-ts.config.ts"
+export default {
+  input: 'hey-api/backend', // sign up at app.heyapi.dev
+  output: 'src/client',
+  plugins: [
+    {
+      format: 'httpapi', // [!code ++]
+      name: 'effect',
+    },
+  ],
+};
+```
+
+## Name
+
+Use the `outputName` option to change the name of the generated client interface or `HttpApi` class. This is the same as the `--name` flag of the `openapigen` CLI.
+
+```js {6} title="openapi-ts.config.ts"
+export default {
+  input: 'hey-api/backend', // sign up at app.heyapi.dev
+  output: 'src/client',
+  plugins: [
+    {
+      name: 'effect',
+      outputName: 'PetStore', // [!code ++]
+    },
+  ],
+};
+```
+
+## Limitations
+
+- The plugin reads your input specification directly, so `parser.filters` and other parser transforms do not change the Effect output. Use [`parser.patch`](/docs/openapi/typescript/configuration/parser#patch) to change the specification.
+- Other Hey API plugins cannot reference the Effect output.
+- Warnings from `@effect/openapi-generator` are printed to the console.

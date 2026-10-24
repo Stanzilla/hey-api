@@ -336,12 +336,6 @@ Clients are responsible for sending the actual HTTP requests. We default to Fetc
 - [`@hey-api/client-nuxt`](https://heyapi.dev/docs/openapi/typescript/clients/nuxt)
 - [`@hey-api/client-ofetch`](https://heyapi.dev/docs/openapi/typescript/clients/ofetch)
 
-### Proposed Clients (Vote to Prioritize)
-
-The following clients are roadmap proposals and are not started yet. You can help us prioritize them by voting on [GitHub](https://github.com/hey-api/hey-api/issues?q=state%3Aopen%20label%3A%22vote%20%F0%9F%93%A9%22).
-
-- [`@hey-api/client-effect`](https://heyapi.dev/docs/openapi/typescript/clients/effect)
-
 Don't see your client? [Build your own](https://heyapi.dev/docs/openapi/typescript/clients/custom) or let us know your interest by [opening an issue](https://github.com/hey-api/hey-api/issues).
 
 ### Available Plugins
@@ -360,6 +354,7 @@ These plugins help reduce boilerplate associated with third-party dependencies. 
 - [`@tanstack/solid-query`](https://heyapi.dev/docs/openapi/typescript/plugins/tanstack-query)
 - [`@tanstack/svelte-query`](https://heyapi.dev/docs/openapi/typescript/plugins/tanstack-query)
 - [`@tanstack/vue-query`](https://heyapi.dev/docs/openapi/typescript/plugins/tanstack-query)
+- [`effect`](https://heyapi.dev/docs/openapi/typescript/clients/effect)
 - [`fastify`](https://heyapi.dev/docs/openapi/typescript/plugins/fastify)
 - [`orpc`](https://heyapi.dev/docs/openapi/typescript/plugins/orpc)
 - [`nestjs`](https://heyapi.dev/docs/openapi/typescript/plugins/nest)

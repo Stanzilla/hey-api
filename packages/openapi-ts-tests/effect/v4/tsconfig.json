@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // generated `httpapi` output imports helpers it does not always use
+    "noUnusedLocals": false
+  },
+  "include": ["test/**/*", "__snapshots__/**/*", "vitest.setup.ts"],
+  // `@effect/openapi-generator` emits `Schema.Json` without importing `Schema` in this format
+  "exclude": [".gen/**/*", "__snapshots__/*/httpclient-type-only/**/*"],
+  "references": [{ "path": "../../../openapi-ts" }]
+}

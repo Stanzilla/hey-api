@@ -22,6 +22,7 @@ import { defaultConfig as tanStackSolidQuery } from './@tanstack/solid-query';
 import { defaultConfig as tanStackSvelteQuery } from './@tanstack/svelte-query';
 import { defaultConfig as tanStackVueQuery } from './@tanstack/vue-query';
 import { defaultConfig as arktype } from './arktype';
+import { defaultConfig as effect } from './effect';
 import { defaultConfig as fastify } from './fastify';
 import { defaultConfig as msw } from './msw';
 import { defaultConfig as nestjs } from './nestjs';
@@ -63,6 +64,7 @@ export const defaultPluginConfigs: {
   '@tanstack/svelte-query': tanStackSvelteQuery,
   '@tanstack/vue-query': tanStackVueQuery,
   arktype,
+  effect,
   fastify,
   msw,
   nestjs,
